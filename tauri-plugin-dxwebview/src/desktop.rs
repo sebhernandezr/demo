@@ -1,5 +1,5 @@
 use serde::de::DeserializeOwned;
-use tauri::{plugin::PluginApi, AppHandle, Runtime};
+use tauri::{plugin::PluginApi, AppHandle, Manager, Runtime};
 
 use crate::models::*;
 
@@ -21,7 +21,22 @@ impl<R: Runtime> Dxwebview<R> {
     }
 
     pub fn create_webview(&self, payload: PingRequest) -> crate::Result<PingResponse> {
-        // window
+        let window = self.0.get_window("main").unwrap();
+        window
+            .add_child(
+                tauri::WebviewBuilder::new(
+                    "label",
+                    tauri::WebviewUrl::External(payload.value.clone().unwrap().parse().unwrap()),
+                )
+                .auto_resize(),
+                tauri::PhysicalPosition::new(0, 0),
+                tauri::PhysicalSize::new(
+                    window.inner_size().unwrap().width / 2,
+                    window.inner_size().unwrap().height,
+                ),
+            )
+            .unwrap();
+
         Ok(PingResponse {
             value: payload.value,
         })
