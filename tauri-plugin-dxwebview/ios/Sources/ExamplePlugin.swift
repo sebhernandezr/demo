@@ -23,9 +23,10 @@ class ExamplePlugin: Plugin {
       // Get screen dimensions
       let screenSize = UIScreen.main.bounds.size
       let screenWidth = screenSize.width
+      let screenHeight = screenSize.height
 
       // Create a WKWebView instance
-      self.webView = WKWebView(frame: CGRect(x: 0, y: screenSize.height / 2, width: screenWidth, height: screenSize.height / 2))
+      self.webView = WKWebView(frame: CGRect(x: 0, y: 0, width: screenWidth / 2, height: screenHeight))
       self.webView?.backgroundColor = UIColor.clear
       self.webView?.isOpaque = false
 
