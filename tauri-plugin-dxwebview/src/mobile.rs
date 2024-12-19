@@ -25,15 +25,15 @@ pub fn init<R: Runtime, C: DeserializeOwned>(
 pub struct Dxwebview<R: Runtime>(PluginHandle<R>);
 
 impl<R: Runtime> Dxwebview<R> {
-    pub fn ping(&self, payload: PingRequest) -> crate::Result<PingResponse> {
+    pub fn create_webview(&self, payload: PingRequest) -> crate::Result<()> {
         self.0
-            .run_mobile_plugin("ping", payload)
+            .run_mobile_plugin("createWebview", payload)
             .map_err(Into::into)
     }
 
-    pub fn create_webview(&self, payload: PingRequest) -> crate::Result<PingResponse> {
+    pub fn close_webview(&self, payload: PingRequest) -> crate::Result<()> {
         self.0
-            .run_mobile_plugin("createWebview", payload)
+            .run_mobile_plugin("closeWebview", payload)
             .map_err(Into::into)
     }
 }

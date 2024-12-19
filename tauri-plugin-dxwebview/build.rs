@@ -1,4 +1,4 @@
-const COMMANDS: &[&str] = &["ping", "create_webview"];
+const COMMANDS: &[&str] = &["create_webview", "close_webview"];
 
 fn main() {
     tauri_plugin::Builder::new(COMMANDS)

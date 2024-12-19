@@ -36,8 +36,8 @@ impl<R: Runtime, T: Manager<R>> crate::DxwebviewExt<R> for T {
 pub fn init<R: Runtime>() -> TauriPlugin<R> {
     Builder::new("dxwebview")
         .invoke_handler(tauri::generate_handler![
-            commands::ping,
-            commands::create_webview
+            commands::create_webview,
+            commands::close_webview
         ])
         .setup(|app, api| {
             #[cfg(mobile)]

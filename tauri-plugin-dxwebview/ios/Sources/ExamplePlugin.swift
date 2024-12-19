@@ -10,11 +10,6 @@ class PingArgs: Decodable {
 class ExamplePlugin: Plugin {
   private var webView: WKWebView?
 
-  @objc public func ping(_ invoke: Invoke) throws {
-    let args = try invoke.parseArgs(PingArgs.self)
-    invoke.resolve(["value": args.value ?? ""])
-  }
-
   @objc public func createWebview(_ invoke: Invoke) throws {
     let args = try invoke.parseArgs(PingArgs.self)
     let urlString = args.value ?? "https://www.google.com"
@@ -42,12 +37,10 @@ class ExamplePlugin: Plugin {
       if let window = UIApplication.shared.windows.first {
         window.addSubview(self.webView!)
       }
-
-      invoke.resolve(["value": urlString])
     }
   }
 
-  @objc public func removeWebview(_ invoke: Invoke) throws {
+  @objc public func closeWebview(_ invoke: Invoke) throws {
     DispatchQueue.main.async {
       self.webView?.removeFromSuperview()
       self.webView = nil

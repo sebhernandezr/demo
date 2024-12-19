@@ -12,7 +12,7 @@ function App() {
 
     async function removeWebview() {
         setOpen(false);
-        // await invoke("plugin:dxwebview|remove_webview", {payload: {value: "https://www.geogebra.org/classic"}});
+        await invoke("plugin:dxwebview|close_webview", {payload: {value: "https://www.geogebra.org/classic"}});
     }
 
     return (

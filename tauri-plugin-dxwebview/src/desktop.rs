@@ -14,13 +14,7 @@ pub fn init<R: Runtime, C: DeserializeOwned>(
 pub struct Dxwebview<R: Runtime>(AppHandle<R>);
 
 impl<R: Runtime> Dxwebview<R> {
-    pub fn ping(&self, payload: PingRequest) -> crate::Result<PingResponse> {
-        Ok(PingResponse {
-            value: payload.value,
-        })
-    }
-
-    pub fn create_webview(&self, payload: PingRequest) -> crate::Result<PingResponse> {
+    pub fn create_webview(&self, payload: PingRequest) -> crate::Result<()> {
         let window = self.0.get_window("main").unwrap();
         window
             .add_child(
@@ -37,8 +31,13 @@ impl<R: Runtime> Dxwebview<R> {
             )
             .unwrap();
 
-        Ok(PingResponse {
-            value: payload.value,
-        })
+        Ok(())
+    }
+
+    pub fn close_webview(&self, payload: PingRequest) -> crate::Result<()> {
+        let window = self.0.get_window("main").unwrap();
+        window.get_webview("label").unwrap().close().unwrap();
+
+        Ok(())
     }
 }

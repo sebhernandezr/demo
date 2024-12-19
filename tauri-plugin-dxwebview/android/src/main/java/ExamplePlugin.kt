@@ -21,17 +21,6 @@ class PingArgs {
 
 @TauriPlugin
 class ExamplePlugin(private val activity: Activity): Plugin(activity) {
-    private val implementation = Example()
-
-    @Command
-    fun ping(invoke: Invoke) {
-        val args = invoke.parseArgs(PingArgs::class.java)
-
-        val ret = JSObject()
-        ret.put("value", implementation.pong(args.value ?: "default value :("))
-        invoke.resolve(ret)
-    }
-
     private var webView: WebView? = null // Keep a reference to the WebView
 
     @Command
@@ -62,15 +51,11 @@ class ExamplePlugin(private val activity: Activity): Plugin(activity) {
             // Load google.com in the WebView
             val args = invoke.parseArgs(PingArgs::class.java)
             loadUrl(args.value)
-
-            val ret = JSObject()
-            ret.put("value", implementation.pong(args.value ?: "default value :("))
-            invoke.resolve(ret)
         }
     }
 
     @Command
-    fun removeWebview(invoke: Invoke) {
+    fun closeWebview(invoke: Invoke) {
         webView?.let { webView ->
             // Remove the WebView from its parent
             (webView.parent as? ViewGroup)?.removeView(webView)

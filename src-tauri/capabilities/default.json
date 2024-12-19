@@ -13,6 +13,7 @@
   ],
   "permissions": [
     "dxwebview:allow-ping",
-    "dxwebview:allow-create-webview"
+    "dxwebview:allow-create-webview",
+    "dxwebview:allow-close-webview"
   ]
 }

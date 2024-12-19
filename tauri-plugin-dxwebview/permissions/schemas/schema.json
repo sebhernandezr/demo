@@ -295,6 +295,16 @@
       "type": "string",
       "oneOf": [
         {
+          "description": "Enables the close_webview command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-close-webview"
+        },
+        {
+          "description": "Denies the close_webview command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-close-webview"
+        },
+        {
           "description": "Enables the create_webview command without any pre-configured scope.",
           "type": "string",
           "const": "allow-create-webview"

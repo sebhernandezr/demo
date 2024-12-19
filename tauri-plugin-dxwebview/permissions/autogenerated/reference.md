@@ -16,6 +16,32 @@ Default permissions for the plugin
 <tr>
 <td>
 
+`dxwebview:allow-close-webview`
+
+</td>
+<td>
+
+Enables the close_webview command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`dxwebview:deny-close-webview`
+
+</td>
+<td>
+
+Denies the close_webview command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
 `dxwebview:allow-create-webview`
 
 </td>
