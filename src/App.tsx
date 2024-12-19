@@ -7,12 +7,22 @@ function App() {
 
     async function addWebview() {
         setOpen(true);
-        await invoke("plugin:dxwebview|create_webview", {payload: {value: "https://www.geogebra.org/classic"}});
+        await invoke("plugin:dxwebview|create_webview", {
+            payload: {
+                url: "https://www.geogebra.org/classic",
+                label: "geogebra"
+            }
+        });
     }
 
     async function removeWebview() {
         setOpen(false);
-        await invoke("plugin:dxwebview|close_webview", {payload: {value: "https://www.geogebra.org/classic"}});
+        await invoke("plugin:dxwebview|close_webview", {
+            payload: {
+                url: "https://www.geogebra.org/classic",
+                label: "geogebra"
+            }
+        });
     }
 
     return (

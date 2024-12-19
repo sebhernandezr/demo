@@ -7,7 +7,7 @@ use crate::Result;
 #[command]
 pub(crate) async fn create_webview<R: Runtime>(
     app: AppHandle<R>,
-    payload: PingRequest,
+    payload: DxWebviewRequest,
 ) -> Result<()> {
     app.dxwebview().create_webview(payload)
 }
@@ -15,7 +15,7 @@ pub(crate) async fn create_webview<R: Runtime>(
 #[command]
 pub(crate) async fn close_webview<R: Runtime>(
     app: AppHandle<R>,
-    payload: PingRequest,
+    payload: DxWebviewRequest,
 ) -> Result<()> {
     app.dxwebview().close_webview(payload)
 }

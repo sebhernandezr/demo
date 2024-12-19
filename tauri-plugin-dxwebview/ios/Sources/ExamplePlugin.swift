@@ -3,16 +3,17 @@ import Tauri
 import UIKit
 import WebKit
 
-class PingArgs: Decodable {
-  let value: String?
+class DxWebviewArgs: Decodable {
+  let url: String
+  let label: String
 }
 
 class ExamplePlugin: Plugin {
   private var webView: WKWebView?
 
   @objc public func createWebview(_ invoke: Invoke) throws {
-    let args = try invoke.parseArgs(PingArgs.self)
-    let urlString = args.value ?? "https://www.google.com"
+    let args = try invoke.parseArgs(DxWebviewArgs.self)
+    let urlString = args.url
 
     DispatchQueue.main.async {
       // Get screen dimensions

@@ -14,13 +14,13 @@ pub fn init<R: Runtime, C: DeserializeOwned>(
 pub struct Dxwebview<R: Runtime>(AppHandle<R>);
 
 impl<R: Runtime> Dxwebview<R> {
-    pub fn create_webview(&self, payload: PingRequest) -> crate::Result<()> {
+    pub fn create_webview(&self, payload: DxWebviewRequest) -> crate::Result<()> {
         let window = self.0.get_window("main").unwrap();
         window
             .add_child(
                 tauri::WebviewBuilder::new(
-                    "label",
-                    tauri::WebviewUrl::External(payload.value.clone().unwrap().parse().unwrap()),
+                    payload.label,
+                    tauri::WebviewUrl::External(payload.url.parse().unwrap()),
                 )
                 .auto_resize(),
                 tauri::PhysicalPosition::new(0, 0),
@@ -34,9 +34,9 @@ impl<R: Runtime> Dxwebview<R> {
         Ok(())
     }
 
-    pub fn close_webview(&self, payload: PingRequest) -> crate::Result<()> {
+    pub fn close_webview(&self, payload: DxWebviewRequest) -> crate::Result<()> {
         let window = self.0.get_window("main").unwrap();
-        window.get_webview("label").unwrap().close().unwrap();
+        window.get_webview(&payload.label).unwrap().close().unwrap();
 
         Ok(())
     }

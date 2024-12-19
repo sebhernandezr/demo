@@ -15,8 +15,9 @@ import app.tauri.plugin.Plugin
 import app.tauri.plugin.Invoke
 
 @InvokeArg
-class PingArgs {
-  var value: String = ""
+class DxWebviewArgs {
+  var url: String = ""
+  var label: String = ""
 }
 
 @TauriPlugin
@@ -48,9 +49,9 @@ class ExamplePlugin(private val activity: Activity): Plugin(activity) {
             // Enable JavaScript for the WebView
             settings.javaScriptEnabled = true
 
-            // Load google.com in the WebView
-            val args = invoke.parseArgs(PingArgs::class.java)
-            loadUrl(args.value)
+            // Load url in the WebView
+            val args = invoke.parseArgs(DxWebviewArgs::class.java)
+            loadUrl(args.url)
         }
     }
 
