@@ -6,6 +6,7 @@ import android.util.DisplayMetrics
 import android.view.Gravity
 import android.view.ViewGroup
 import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.FrameLayout
 import app.tauri.annotation.Command
 import app.tauri.annotation.InvokeArg
@@ -49,7 +50,10 @@ class ExamplePlugin(private val activity: Activity): Plugin(activity) {
             // Enable JavaScript for the WebView
             settings.javaScriptEnabled = true
 
-            // Load url in the WebView
+            // Set WebViewClient to handle URL loading within the WebView
+            webViewClient = WebViewClient()
+
+            // Load the URL
             val args = invoke.parseArgs(DxWebviewArgs::class.java)
             loadUrl(args.url)
         }

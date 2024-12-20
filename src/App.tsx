@@ -9,8 +9,8 @@ function App() {
         setOpen(true);
         await invoke("plugin:dxwebview|create_webview", {
             payload: {
-                url: "https://www.geogebra.org/classic",
-                label: "geogebra"
+                url: "https://www.digiexam.com/",
+                label: "test"
             }
         });
     }
@@ -19,8 +19,8 @@ function App() {
         setOpen(false);
         await invoke("plugin:dxwebview|close_webview", {
             payload: {
-                url: "https://www.geogebra.org/classic",
-                label: "geogebra"
+                url: "https://www.digiexam.com/",
+                label: "test"
             }
         });
     }
