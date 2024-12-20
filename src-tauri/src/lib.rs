@@ -13,6 +13,7 @@ pub fn run() {
             Ok(())
         })
         .plugin(tauri_plugin_dxwebview::init())
+        .plugin(tauri_plugin_webview_manager::init())
         .invoke_handler(tauri::generate_handler![commands::create_webview])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

@@ -14,6 +14,7 @@
   "permissions": [
     "dxwebview:allow-ping",
     "dxwebview:allow-create-webview",
-    "dxwebview:allow-close-webview"
+    "dxwebview:allow-close-webview",
+    "webview-manager:allow-ping"
   ]
 }
