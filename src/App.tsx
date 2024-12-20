@@ -4,10 +4,11 @@ import {useState} from "react";
 
 function App() {
     const [open, setOpen] = useState(false);
+    const [res, setRes] = useState<{ value?: string }>({value: ""});
 
     return (
         <main className={open ? "split" : "full"}>
-            <h1>POC split screen Android</h1>
+            <h1>POC webview mobile</h1>
             <button onClick={async () => {
                 await invoke("plugin:dxwebview|create_webview", {
                     payload: {
@@ -29,13 +30,15 @@ function App() {
             }}>close
             </button>
             <button onClick={async () => {
-                console.log(await invoke("plugin:webview-manager|ping", {
+                let res = await invoke<{ value?: string }>("plugin:webview-manager|ping", {
                     payload: {
-                        value: "test"
+                        value: "pong"
                     }
-                }))
+                })
+                setRes(res);
             }}>ping
             </button>
+            {res.value}
         </main>
     );
 }
